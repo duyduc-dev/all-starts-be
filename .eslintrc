@@ -1,0 +1,59 @@
+{
+  "root": true,
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "eslint-config-prettier",
+    "prettier"
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["<current-directory-path>"],
+        "extensions": [".js", ".ts"]
+      }
+    }
+  },
+  "plugins": ["prettier", "simple-import-sort"],
+  "rules": {
+    "no-empty": "warn",
+    "no-cond-assign": ["error", "always"],
+    "no-unused-vars": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    "no-console": "warn",
+    "no-use-before-define": "off",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": ["^@", "^~"]
+      }
+    ],
+    "prettier/prettier": [
+      "warn",
+      {
+        "arrowParens": "always",
+        "semi": true,
+        "endOfLine": "auto",
+        "tabWidth": 2,
+        "useTabs": false,
+        "singleQuote": true,
+        "printWidth": 100,
+        "singleAttributePerLine": true,
+        "noImplicitAny": false
+      }
+    ],
+    "object-curly-newline": [
+      "error",
+      {
+        "consistent": true
+      }
+    ]
+  },
+  "env": {
+    "node": true
+  }
+}
