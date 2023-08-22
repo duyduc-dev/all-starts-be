@@ -7,7 +7,7 @@ const authRouter = express.Router();
 
 authRouter.get(apiPath.index, (req, res) => {
   res.json({
-    message: 'hello anh em',
+    message: 'hello anh em hihi',
   });
 });
 authRouter.post(apiPath.login, authController.login);

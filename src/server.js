@@ -24,7 +24,6 @@ class App {
       console.log(`Server is running on Port: ${this.PORT}`);
     });
   }
-
 }
 
 new App().bootstrap();
