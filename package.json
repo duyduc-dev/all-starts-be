@@ -7,22 +7,13 @@
   "scripts": {
     "webpack:server": "webpack --config webpack.config.js --mode development --watch",
     "webpack:start": "nodemon --inspect dist/server.js",
-    "dev": "concurrently \"yarn:webpack:server\" \"yarn:webpack:start\"",
+    "dev": "concurrently \"npm:webpack:server\" \"npm:webpack:start\"",
     "build": "webpack --mode production",
-    "start": "yarn build && node dist/server.js",
+    "start": "npm run build && node dist/server.js",
     "lint": "eslint --ext js,ts src/",
     "lint:fix": "eslint --fix --ext js,ts src/",
     "prettier": "prettier --check \"src/**/(*.ts|*.js)\"",
-    "prettier:fix": "prettier --write \"src/**/(*.ts|*.js)\"",
-    "prepare": "husky install"
-  },
-  "lint-staged": {
-    "*.{js,ts}": [
-      "yarn lint:fix",
-      "yarn lint",
-      "yarn prettier:fix",
-      "yarn prettier"
-    ]
+    "prettier:fix": "prettier --write \"src/**/(*.ts|*.js)\""
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

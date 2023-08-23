@@ -1,7 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 
-import routerConfig from './routes';
+import routerConfig from "./routes";
 
 class App {
   constructor() {
