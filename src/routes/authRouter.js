@@ -5,11 +5,8 @@ import authController from '@/controllers/authController';
 
 const authRouter = express.Router();
 
-authRouter.get(apiPath.index, (req, res) => {
-  res.json({
-    message: 'hello anh em hihi',
-  });
-});
+authRouter.get(apiPath.index, authController.index);
 authRouter.post(apiPath.login, authController.login);
+authRouter.post(apiPath.signup, authController.signup);
 
 export default authRouter;
