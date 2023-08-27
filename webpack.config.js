@@ -1,9 +1,6 @@
 const path = require('path');
 const webpackNodeExternals = require('webpack-node-externals');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const webpack = require('webpack');
-const dotenv = require("dotenv");
-// const Dotenv = require('dotenv-webpack');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
