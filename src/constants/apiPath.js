@@ -6,5 +6,6 @@ export const apiPath = {
   auth: '/auth',
 
   login: '/login',
-  signup: '/signup',
+  register: '/register',
+  me: '/me',
 };
