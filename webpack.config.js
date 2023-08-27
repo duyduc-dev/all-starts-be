@@ -1,9 +1,6 @@
 const path = require('path');
 const webpackNodeExternals = require('webpack-node-externals');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const webpack = require('webpack');
-const dotenv = require("dotenv");
-// const Dotenv = require('dotenv-webpack');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
@@ -54,9 +51,9 @@ module.exports = (env, argv) => {
         extensions: ['.ts', '.js'],
       }),
       // new Dotenv(),
-      new webpack.DefinePlugin({
-        'process.env': JSON.stringify(dotenv.config().parsed),
-      }),
+      // new webpack.DefinePlugin({
+      //   'process.env': JSON.stringify(dotenv.config().parsed),
+      // }),
     ],
   };
 

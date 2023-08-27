@@ -4,6 +4,8 @@ import morgan from 'morgan';
 
 import routerConfig from './routes';
 
+dotEnvConfig();
+
 class App {
   constructor() {
     this.app = express();
@@ -19,9 +21,6 @@ class App {
   }
 
   config() {
-    dotEnvConfig({
-      path: '../.env',
-    });
     routerConfig(this.app);
   }
 
