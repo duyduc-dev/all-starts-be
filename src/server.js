@@ -1,13 +1,16 @@
+import { config as dotEnvConfig } from 'dotenv';
 import express from 'express';
 import morgan from 'morgan';
 
-import routerConfig from "./routes";
+import routerConfig from './routes';
 
 class App {
   constructor() {
     this.app = express();
     this.PORT = process.env.PORT;
+
     this.config();
+    this.middleware();
   }
 
   middleware() {
@@ -16,6 +19,9 @@ class App {
   }
 
   config() {
+    dotEnvConfig({
+      path: '../.env',
+    });
     routerConfig(this.app);
   }
 

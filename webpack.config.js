@@ -1,14 +1,16 @@
 const path = require('path');
 const webpackNodeExternals = require('webpack-node-externals');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
+const webpack = require('webpack');
+const dotenv = require("dotenv");
+// const Dotenv = require('dotenv-webpack');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
 
   const config = {
     target: 'node',
-    entry: ['@babel/polyfill','./src/server.js'],
+    entry: ['@babel/polyfill', './src/server.js'],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
@@ -51,7 +53,10 @@ module.exports = (env, argv) => {
       new ESLintPlugin({
         extensions: ['.ts', '.js'],
       }),
-      new Dotenv(),
+      // new Dotenv(),
+      new webpack.DefinePlugin({
+        'process.env': JSON.stringify(dotenv.config().parsed),
+      }),
     ],
   };
 
