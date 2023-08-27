@@ -16,6 +16,7 @@
     "prettier:fix": "prettier --write \"src/**/(*.ts|*.js)\""
   },
   "dependencies": {
+    "babel-loader": "^9.1.3",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
@@ -25,15 +26,14 @@
     "morgan": "^1.10.0",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
-    "webpack-node-externals": "^3.0.0"
-  },
-  "devDependencies": {
+    "webpack-node-externals": "^3.0.0",
     "@babel/cli": "^7.22.10",
     "@babel/core": "^7.22.10",
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.22.10",
-    "babel-loader": "^9.1.3",
-    "babel-plugin-module-resolver": "^5.0.0",
+    "babel-plugin-module-resolver": "^5.0.0"
+  },
+  "devDependencies": {
     "concurrently": "^8.2.0",
     "dotenv-webpack": "^8.0.1",
     "eslint": "^8.47.0",
@@ -42,9 +42,6 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-webpack-plugin": "^4.0.1",
-    "husky": "^8.0.3",
-    "lint-staged": "^14.0.1",
-    "nodemon": "^3.0.1",
     "prettier": "^3.0.2"
   }
 }
