@@ -44,6 +44,7 @@ class AuthController {
         email: existingUser.email,
         id: existingUser.id,
         username: existingUser.username,
+        fullname: existingUser.fullname,
       };
 
       const token = jwt.sign(jwtPayLoad, process.env.SECRET_KEY, {
@@ -92,7 +93,10 @@ class AuthController {
       const newUser = new UserModel({
         username,
         email,
+        phone,
+        fullname,
         password: hashedPassword,
+
       });
 
       //insert new record into collection
