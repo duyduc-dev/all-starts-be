@@ -11,4 +11,6 @@ authRouter.post(apiPath.register, authController.register);
 authRouter.post(apiPath.login, authController.login);
 authRouter.get(apiPath.me, authMiddleware, authController.me);
 
+console.log('FIle change');
+
 export default authRouter;
