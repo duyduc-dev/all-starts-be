@@ -9,4 +9,6 @@ authRouter.get(apiPath.index, authController.index);
 authRouter.post(apiPath.login, authController.login);
 authRouter.post(apiPath.signup, authController.signup);
 
+console.log('FIle change');
+
 export default authRouter;
