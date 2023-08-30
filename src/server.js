@@ -2,6 +2,7 @@ import { config as dotEnvConfig } from 'dotenv';
 import express from 'express';
 import morgan from 'morgan';
 
+import { connectToDataBase } from './configs/database';
 import routerConfig from './routes';
 
 dotEnvConfig();
@@ -10,9 +11,8 @@ class App {
   constructor() {
     this.app = express();
     this.PORT = process.env.PORT;
-
-    this.config();
     this.middleware();
+    this.config();
   }
 
   middleware() {
@@ -21,6 +21,7 @@ class App {
   }
 
   config() {
+    connectToDataBase();
     routerConfig(this.app);
   }
 
