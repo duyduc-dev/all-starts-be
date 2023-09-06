@@ -1,22 +1,28 @@
 import mongoose from 'mongoose';
 
-const PostSchema = new mongoose.Schema({
-  userId: {
-    type: String,
-    required: true,
+const PostSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    content: {
+      type: String,
+    },
+    backgroundColor: {
+      type: String,
+    },
+    image: {
+      type: String,
+    },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'users',
+      required: true,
+    },
   },
-  desc: {
-    type: String,
-    max: 500,
-  },
-  img: {
-    type: String,
-  },
-  likes: {
-    type: Array,
-    default: [],
-  },
-});
+  { timeStane: true },
+);
 
 const PostsModel = mongoose.model('post', PostSchema);
 

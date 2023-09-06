@@ -1,0 +1,21 @@
+import express from 'express';
+
+import { apiPath } from '@/constants';
+import postController from '@/controllers/postCotronller';
+import { authMiddleware } from '@/middlewares/authMiddleware';
+import { validationMdw } from '@/middlewares/validate.middleware';
+import PostValidationSchema from '@/validations/postValidation';
+
+const postRouter = express.Router();
+
+postRouter.use(authMiddleware);
+
+postRouter.get(apiPath.all, postController.getAllPosts);
+postRouter.get(apiPath.owners, postController.getAllOwnerPosts);
+postRouter.post(apiPath.index, validationMdw(PostValidationSchema), postController.create);
+postRouter.put(apiPath.id);
+postRouter.delete(apiPath.id);
+postRouter.get(apiPath.id, postController.getSingle);
+postRouter.get(apiPath.index, postController.index);
+
+export default postRouter;

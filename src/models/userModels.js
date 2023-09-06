@@ -9,13 +9,6 @@ const UserSchema = new mongoose.Schema(
       max: 20,
       unique: true,
     },
-    fullname: {
-      type: String,
-      required: true,
-      min: 3,
-      max: 20,
-      unique: true,
-    },
     phone: {
       type: Number,
       required: true,
@@ -26,15 +19,10 @@ const UserSchema = new mongoose.Schema(
       max: 50,
       unique: true,
     },
-    from: {
-      type: String,
-      max: 50,
-      required: true,
-    },
     password: {
       type: String,
-      required: true,
       min: 6,
+      required: true,
     },
     profilePicture: {
       type: String,
