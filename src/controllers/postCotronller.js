@@ -43,10 +43,6 @@ const postController = {
 
   getAllOwnerPosts: asyncHandler(async (req, res) => {
     const userId = req.user.id;
-    console.log(
-      '🚀 ~ file: postCotronller.js:45 ~ getAllOwnerPosts:asyncHandler ~ userId:',
-      userId,
-    );
 
     const page = parseInt(req.query.page) || 1;
     const size = parseInt(req.query.size) || 10;
@@ -70,7 +66,7 @@ const postController = {
   //[Post] /post/
   //Create a new post
   create: asyncHandler(async (req, res) => {
-    const { title, content, backgroundColor, image } = req.body;
+    const { title, content, backgroundColor } = req.body;
     const userId = req.user.id;
 
     //find the user who is create the post
