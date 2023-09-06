@@ -1,5 +1,7 @@
 import { formatDate } from '@/utils/helper';
 
+function a() {}
+
 class AppController {
   // [GET] /
   index(_, res) {
