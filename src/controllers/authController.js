@@ -40,7 +40,7 @@ class AuthController {
       username: existingUser.username,
     };
 
-    const token = jwt.sign(jwtPayLoad, process.env.SECRET_KEY, {
+    const token = jwt.sign(jwtPayLoad, process.env.SECRET_KEY || 'MindX_Web_70', {
       expiresIn: '1h',
     });
 
