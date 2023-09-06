@@ -1,3 +1,4 @@
+import cors from 'cors';
 import { config as dotEnvConfig } from 'dotenv';
 import express from 'express';
 import morgan from 'morgan';
@@ -19,6 +20,7 @@ class App {
   middleware() {
     this.app.use(morgan('dev'));
     this.app.use(express.json());
+    this.app.use(cors('*'));
     // this.app.use(errorHandlerMiddlewares);
   }
 
