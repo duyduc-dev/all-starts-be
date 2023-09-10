@@ -13,9 +13,11 @@ postRouter.use(authMiddleware);
 postRouter.get(apiPath.all, postController.getAllPosts);
 postRouter.get(apiPath.owners, postController.getAllOwnerPosts);
 postRouter.post(apiPath.index, validationMdw(PostValidationSchema), postController.create);
-postRouter.put(apiPath.id);
-postRouter.delete(apiPath.id);
+postRouter.put(apiPath.id, postController.Update);
+postRouter.put(apiPath.id + apiPath.like, postController.like);
+postRouter.delete(apiPath.id, postController.remove);
 postRouter.get(apiPath.id, postController.getSingle);
+
 postRouter.get(apiPath.index, postController.index);
 
 export default postRouter;

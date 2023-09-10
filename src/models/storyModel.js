@@ -1,18 +1,14 @@
 import mongoose from 'mongoose';
 
-const PostSchema = new mongoose.Schema(
+const storySchema = new mongoose.Schema(
   {
-    title: {
-      type: String,
-      required: true,
-    },
     content: {
       type: String,
     },
-    backgroundColor: {
+    image: {
       type: String,
     },
-    image: {
+    url: {
       type: String,
     },
     likes: {
@@ -28,6 +24,6 @@ const PostSchema = new mongoose.Schema(
   { timeStane: true },
 );
 
-const PostsModel = mongoose.model('post', PostSchema);
+const storyModel = mongoose.model('story', storySchema);
 
-export default PostsModel;
+export default storyModel;
