@@ -50,6 +50,14 @@ class StoryController {
       res.status(500).json(err);
     }
   }
+
+  async getAllStory(req, res) {
+    const story = await storyModel.find().populate('user');
+
+    res.json({
+      data: story,
+    });
+  }
 }
 
 const storyController = new StoryController();

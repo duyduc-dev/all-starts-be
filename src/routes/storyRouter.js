@@ -9,7 +9,8 @@ const storyRouter = express.Router();
 
 storyRouter.use(authMiddleware);
 
-storyRouter.post(apiPath.index, storyController.index);
+storyRouter.get(apiPath.index, storyController.index);
+storyRouter.get(apiPath.getAllStory, storyController.getAllStory);
 storyRouter.post(apiPath.upload_story, uploadFile.single('story'), storyController.story);
 
 export default storyRouter;
