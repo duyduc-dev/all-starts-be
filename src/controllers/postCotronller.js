@@ -16,7 +16,7 @@ const postController = {
   getAllPosts: asyncHandler(async (req, res) => {
     try {
       const page = parseInt(req.query.page) || 1;
-      console.log('🚀 ~ file: postCotronller.js:19 ~ getAllPosts:asyncHandler ~ page:', page);
+
       const size = parseInt(req.query.size) || 10;
       const skip = (page - 1) * size;
 
@@ -43,10 +43,6 @@ const postController = {
 
   getAllOwnerPosts: asyncHandler(async (req, res) => {
     const userId = req.user.id;
-    console.log(
-      '🚀 ~ file: postCotronller.js:45 ~ getAllOwnerPosts:asyncHandler ~ userId:',
-      userId,
-    );
 
     const page = parseInt(req.query.page) || 1;
     const size = parseInt(req.query.size) || 10;
@@ -77,7 +73,7 @@ const postController = {
     const currentUser = await UserModel.findById(userId);
 
     if (!currentUser) {
-      res.status = 400;
+      res.status(400);
       throw new Error('Không tìm thấy User');
     }
 
@@ -86,6 +82,7 @@ const postController = {
       title,
       content,
       backgroundColor,
+      image,
       user: userId,
     });
 
@@ -108,6 +105,62 @@ const postController = {
       res.status(200).json(post);
     } catch (err) {
       res.json(500).json(err);
+    }
+  }),
+
+  //[Delete] /post/:id
+  //delete a post
+  remove: asyncHandler(async (req, res) => {
+    const postId = req.params.id;
+    const body = req.body;
+
+    try {
+      const post = await PostsModel.findById(postId);
+      if (post.Id === body.userId) {
+        await post.deleteOne();
+        res.status(200).json('bài viết của bạn đã được xóa');
+      } else {
+        res.status(403).json('bạn chỉ được xóa trong bài viết của bạn');
+      }
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }),
+  //[Put] /post/:id
+  //Update a post
+  Update: asyncHandler(async (req, res) => {
+    const postId = req.params.id;
+    const body = req.body;
+
+    try {
+      const post = await PostsModel.findById(postId);
+      if (post.Id === body.userId) {
+        await post.updateOne({ $set: req.body });
+        res.status(200).json('bài viết của bạn đã được cập nhật');
+      } else {
+        res.status(403).json('bạn chỉ được cập nhật trong bài viết của bạn');
+      }
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }),
+
+  //[Put] post/:id/like
+  //like/dislike a post
+  like: asyncHandler(async (req, res) => {
+    const postId = req.params.id;
+    const body = req.body;
+    try {
+      const post = await PostsModel.findById(postId);
+      if (!post.likes.includes(body.userId)) {
+        await post.updateOne({ $push: { likes: body.userId } });
+        res.status(200).json('đã thích bài viét này');
+      } else {
+        await post.updateOne({ $pull: { likes: body.userId } });
+        res.status(200).json('bài viết đã bỏ thích');
+      }
+    } catch (err) {
+      res.status(500).json(err);
     }
   }),
 };
