@@ -1,6 +1,7 @@
-import storyModel from '@/models/storyModel';
 import { v2 as cloudinary } from 'cloudinary';
 import fs from 'fs';
+
+import storyModel from '@/models/storyModel';
 
 cloudinary.config({
   cloud_name: 'djwvklgcn',
