@@ -5,7 +5,7 @@ const storySchema = new mongoose.Schema(
     content: {
       type: String,
     },
-    image: {
+    type: {
       type: String,
     },
     url: {

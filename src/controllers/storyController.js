@@ -35,6 +35,7 @@ class StoryController {
       const newStory = new storyModel({
         user: id,
         url: storyUrl,
+        type: result.resource_type,
       });
 
       await newStory.save();
