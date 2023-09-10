@@ -1,6 +1,7 @@
-import storyModel from '@/models/storyModel';
 import { v2 as cloudinary } from 'cloudinary';
 import fs from 'fs';
+
+import storyModel from '@/models/storyModel';
 
 cloudinary.config({
   cloud_name: 'djwvklgcn',
@@ -48,6 +49,14 @@ class StoryController {
       console.log(err);
       res.status(500).json(err);
     }
+  }
+
+  async getAllStory(req, res) {
+    const story = await storyModel.find().populate('user');
+
+    res.json({
+      data: story,
+    });
   }
 }
 

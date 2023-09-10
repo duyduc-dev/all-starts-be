@@ -9,6 +9,7 @@ export const apiPath = {
   comment: '/comment',
   story: '/story',
   upload_story: '/upload_story',
+  getAllStory: '/getAllStory',
 
   id: '/:id',
   user: '/user',
