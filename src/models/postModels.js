@@ -9,13 +9,16 @@ const PostSchema = new mongoose.Schema(
     content: {
       type: String,
     },
-    backgroundColor: {
-      type: String,
-    },
+
     image: {
-      type: String,
+      type: Array,
+      default: [],
     },
     likes: {
+      type: Array,
+      default: [],
+    },
+    comments: {
       type: Array,
       default: [],
     },
