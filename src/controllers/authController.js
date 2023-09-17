@@ -61,7 +61,7 @@ class AuthController {
     const existingUser = await UserModel.findOne({ email });
 
     if (existingUser) {
-      return res.status(401).json({
+      return res.status(200).json({
         message: 'User này đã tồn tại ',
       });
     }
