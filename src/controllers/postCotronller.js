@@ -17,7 +17,7 @@ const postController = {
     try {
       const page = parseInt(req.query.page) || 1;
 
-      const size = parseInt(req.query.size) || 10;
+      const size = parseInt(req.query.size) || 20;
       const skip = (page - 1) * size;
 
       const posts = await PostsModel.find().skip(skip).limit(size);
@@ -45,7 +45,7 @@ const postController = {
     const userId = req.user.id;
 
     const page = parseInt(req.query.page) || 1;
-    const size = parseInt(req.query.size) || 10;
+    const size = parseInt(req.query.size) || 20;
     const skip = (page - 1) * size;
 
     const posts = await PostsModel.find({ user: userId }).skip(skip).limit(size);
@@ -68,7 +68,6 @@ const postController = {
   create: asyncHandler(async (req, res) => {
     const { title, content, backgroundColor, image } = req.body;
     const { id, username, profilePicture } = req.user;
-    
 
     //find the user who is create the post
     const currentUser = await UserModel.findById(id);
