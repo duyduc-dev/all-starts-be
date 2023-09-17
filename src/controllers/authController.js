@@ -28,7 +28,7 @@ class AuthController {
 
     if (!isMatchPassword) {
       return res.status(401).json({
-        message: 'User chưa tồn tại',
+        message: 'User sai mật khẩu',
       });
     }
 
@@ -38,6 +38,7 @@ class AuthController {
       id: existingUser.id,
       phone: existingUser.phone,
       username: existingUser.username,
+      profilePicture: existingUser.profilePicture,
     };
 
     const token = jwt.sign(jwtPayLoad, process.env.SECRET_KEY || 'MindX_Web_70', {

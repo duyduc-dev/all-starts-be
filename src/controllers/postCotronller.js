@@ -67,10 +67,11 @@ const postController = {
   //Create a new post
   create: asyncHandler(async (req, res) => {
     const { title, content, backgroundColor, image } = req.body;
-    const userId = req.user.id;
+    const { id, username, profilePicture } = req.user;
+    
 
     //find the user who is create the post
-    const currentUser = await UserModel.findById(userId);
+    const currentUser = await UserModel.findById(id);
 
     if (!currentUser) {
       res.status(400);
@@ -83,7 +84,7 @@ const postController = {
       content,
       backgroundColor,
       image,
-      user: userId,
+      user: { id, username, profilePicture },
     });
 
     //save post to database
