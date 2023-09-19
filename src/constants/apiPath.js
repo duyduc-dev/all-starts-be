@@ -1,6 +1,8 @@
 export const apiPath = {
   baseUrl: '/api',
   v1: '/v1',
+  create_comment: '/create_comment',
+  update: '/update',
 
   post: '/post',
   owners: '/owners',

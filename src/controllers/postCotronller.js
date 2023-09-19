@@ -66,7 +66,7 @@ const postController = {
   //[Post] /post/
   //Create a new post
   create: asyncHandler(async (req, res) => {
-    const { title, content, image } = req.body;
+    const { title, content, images } = req.body;
     const { id, username, profilePicture } = req.user;
 
     //find the user who is create the post
@@ -81,7 +81,7 @@ const postController = {
     const newPost = new PostsModel({
       title,
       content,
-      image,
+      images,
       user: { id, username, profilePicture },
     });
 
