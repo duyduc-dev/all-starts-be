@@ -1,9 +1,15 @@
+import { v2 as cloudinary } from 'cloudinary';
 import asyncHandler from 'express-async-handler';
+import fs from 'fs';
 
 import PostsModel from '@/models/postModels';
 import UserModel from '@/models/userModels';
 
-//
+cloudinary.config({
+  cloud_name: 'djwvklgcn',
+  api_key: '783165928642335',
+  api_secret: 'Ft3m4JyMzh_4txzUrdwDvvVEi9s',
+});
 //
 const postController = {
   //[Get] /post
@@ -68,7 +74,8 @@ const postController = {
   //[Post] /post/
   //Create a new post
   create: asyncHandler(async (req, res) => {
-    const { content, images } = req.body;
+    const { content } = req.body;
+    const file = req.file;
     const { id, username, profilePicture } = req.user;
 
     //Tìm người dùng tạo bài đăng
@@ -79,10 +86,18 @@ const postController = {
       throw new Error('Không tìm thấy User');
     }
 
+    const result = await cloudinary.uploader.upload(file.path, {
+      resource_type: 'auto',
+      folder: 'Web_70_Social_App',
+    });
+
+    const postUrl = result && result.secure_url;
+
+    fs.unlinkSync(file.path);
     //create new post
     const newPost = new PostsModel({
-      content,
-      images,
+      content: content,
+      images: [postUrl],
       user: { id, username, profilePicture },
       comments: [],
       likes: [],

@@ -1,5 +1,6 @@
 import express from 'express';
 
+import uploadFile from '@/configs/multer.config';
 import { apiPath } from '@/constants';
 import postController from '@/controllers/postCotronller';
 import { authMiddleware } from '@/middlewares/authMiddleware';
@@ -12,7 +13,12 @@ postRouter.use(authMiddleware);
 
 postRouter.get(apiPath.all, postController.getAllPosts);
 postRouter.get(apiPath.owners, postController.getAllOwnerPosts);
-postRouter.post(apiPath.index, validationMdw(PostValidationSchema), postController.create);
+postRouter.post(
+  apiPath.index,
+  validationMdw(PostValidationSchema),
+  uploadFile.array('images'),
+  postController.create,
+);
 postRouter.put(apiPath.id, postController.Update);
 postRouter.put(apiPath.id + apiPath.like, postController.like);
 postRouter.delete(apiPath.id, postController.remove);
