@@ -3,7 +3,7 @@ import asyncHandler from 'express-async-handler';
 import PostsModel from '@/models/postModels';
 import UserModel from '@/models/userModels';
 
-// 
+//
 //
 const postController = {
   //[Get] /post
@@ -68,7 +68,7 @@ const postController = {
   //[Post] /post/
   //Create a new post
   create: asyncHandler(async (req, res) => {
-    const { title, content, images } = req.body;
+    const { content, images } = req.body;
     const { id, username, profilePicture } = req.user;
 
     //Tìm người dùng tạo bài đăng
@@ -81,7 +81,6 @@ const postController = {
 
     //create new post
     const newPost = new PostsModel({
-      title,
       content,
       images,
       user: { id, username, profilePicture },
