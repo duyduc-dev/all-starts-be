@@ -2,18 +2,18 @@ import mongoose from 'mongoose';
 
 const commentSchema = new mongoose.Schema(
   {
-    idPost: {
+    user: {
+      type: Object,
+      ref: 'users',
+      required: true,
+    },
+    postId: {
+      type: String,
+      ref: 'posts',
+    },
+    comment: {
       type: String,
       required: true,
-    },
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'users', 
-      required: true,
-    },
-    comments: {
-      type: Array,
-      default: [],
     },
   },
   { timeStane: true },

@@ -1,4 +1,6 @@
 import commentModel from '@/models/commentModel';
+import PostsModel from '@/models/postModels';
+// import PostsModel from '@/models/postModels';
 import UserModel from '@/models/userModels';
 
 export const index = async (req, res) => {
@@ -16,18 +18,32 @@ export const getAllComments = async (req, res) => {
 };
 
 export const createComment = async (req, res) => {
-  const { idPost, user, comments } = req.body;
+  const { postId, user, comment } = req.body;
 
   try {
     const existingUser = await UserModel.findById(user);
+
     if (!existingUser) {
       return res.status(404).json({ message: 'user không tìm thấy' });
     }
     // tạo mới comment
-    const newComment = new commentModel({ idPost, user, comments });
+    const newComment = new commentModel({
+      user: {
+        userId: existingUser._id,
+        name: existingUser.username,
+        avatar: existingUser.profilePicture,
+      },
+      comment: comment,
+    });
+
     await newComment.save();
 
-    res.status(201).json(newComment);
+    //cập nhật bài post
+
+    await PostsModel.findByIdAndUpdate(postId, {
+      $push: { comments: newComment },
+    });
+    res.status(201).json({ newComment });
   } catch (error) {
     res.status(500).json(error.message);
   }

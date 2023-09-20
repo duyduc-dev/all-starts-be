@@ -2,8 +2,11 @@ import express from 'express';
 
 import { apiPath } from '@/constants';
 import commentController from '@/controllers/commentController';
+import { authMiddleware } from '@/middlewares/authMiddleware';
 
 const commentRouter = express.Router();
+
+commentRouter.use(authMiddleware);
 
 commentRouter.get(apiPath.index, commentController.index);
 commentRouter.post(apiPath.create_comment, commentController.createComment);

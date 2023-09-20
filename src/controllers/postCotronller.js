@@ -2,6 +2,8 @@ import asyncHandler from 'express-async-handler';
 
 import PostsModel from '@/models/postModels';
 import UserModel from '@/models/userModels';
+
+// 
 //
 const postController = {
   //[Get] /post
@@ -69,7 +71,7 @@ const postController = {
     const { title, content, images } = req.body;
     const { id, username, profilePicture } = req.user;
 
-    //find the user who is create the post
+    //Tìm người dùng tạo bài đăng
     const currentUser = await UserModel.findById(id);
 
     if (!currentUser) {
@@ -83,6 +85,8 @@ const postController = {
       content,
       images,
       user: { id, username, profilePicture },
+      comments: [],
+      likes: [],
     });
 
     //save post to database
@@ -90,6 +94,7 @@ const postController = {
 
     res.json({
       data: newPost,
+      // comment,
       message: 'Đã tạo mới 1 bài post thành công',
     });
   }),
