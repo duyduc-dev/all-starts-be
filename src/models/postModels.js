@@ -25,6 +25,10 @@ const PostSchema = new mongoose.Schema(
       ref: 'users',
       required: true,
     },
+    createAt: {
+      type: Date,
+      default: Date.now(),
+    },
   },
   { timeStane: true },
 );

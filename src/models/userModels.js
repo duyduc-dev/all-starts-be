@@ -52,6 +52,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       max: 50,
     },
+    createAt: {
+      type: Date,
+      default: Date.now(),
+    },
   },
   { timeStane: true },
 );
