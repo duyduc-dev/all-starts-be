@@ -16,7 +16,7 @@ postRouter.get(apiPath.owners, postController.getAllOwnerPosts);
 postRouter.post(
   apiPath.index,
   validationMdw(PostValidationSchema),
-  uploadFile.array('images'),
+  uploadFile.array('images', 10),
   postController.create,
 );
 postRouter.put(apiPath.id, postController.Update);

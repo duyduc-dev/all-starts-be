@@ -75,7 +75,7 @@ const postController = {
   //Create a new post
   create: asyncHandler(async (req, res) => {
     const { content } = req.body;
-    const file = req.file;
+    const file = req.files;
     const { id, username, profilePicture } = req.user;
 
     //Tìm người dùng tạo bài đăng
@@ -85,19 +85,24 @@ const postController = {
       res.status(400);
       throw new Error('Không tìm thấy User');
     }
+    const uploadPromises = file.map(async (file) => {
+      const result = await cloudinary.uploader.upload(file.path, {
+        resource_type: 'auto',
+        folder: 'Web_70_Social_App',
+      });
 
-    const result = await cloudinary.uploader.upload(file.path, {
-      resource_type: 'auto',
-      folder: 'Web_70_Social_App',
+      fs.unlinkSync(file.path);
+
+      return result.secure_url;
     });
 
-    const postUrl = result && result.secure_url;
+    // eslint-disable-next-line no-undef
+    const postUrls = await Promise.all(uploadPromises);
 
-    fs.unlinkSync(file.path);
     //create new post
     const newPost = new PostsModel({
       content: content,
-      images: [postUrl],
+      images: postUrls,
       user: { id, username, profilePicture },
       comments: [],
       likes: [],
