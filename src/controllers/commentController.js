@@ -22,6 +22,8 @@ export const createComment = async (req, res) => {
 
   try {
     const existingUser = await UserModel.findById(user);
+    
+    
 
     if (!existingUser) {
       return res.status(404).json({ message: 'user không tìm thấy' });
